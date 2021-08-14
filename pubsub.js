@@ -1,6 +1,6 @@
 //	@ghasemkiani/base-utils/pubsub
 
-const {cutil} = require("@ghasemkiani/base/cutil");
+import {cutil} from "@ghasemkiani/base";
 
 const pubsub = {
 	_lsnrs: null,
@@ -62,4 +62,4 @@ const pubsub = {
 	},
 };
 
-module.exports = {pubsub};
+export {pubsub};

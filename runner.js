@@ -1,6 +1,6 @@
 //	@ghasemkiani/base-utils/runner
 
-const {cutil} = require("@ghasemkiani/base/cutil");
+import {cutil} from "@ghasemkiani/base";
 
 const IDLE = new String("idle");
 const STARTED = new String("started");
@@ -104,4 +104,4 @@ const irunner = {
 	},
 };
 
-module.exports = {irunner};
+export {irunner};

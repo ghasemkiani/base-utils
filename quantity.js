@@ -1,9 +1,9 @@
 //	@ghasemkiani/base-utils/quantity
 
-const {Obj: Base} = require("@ghasemkiani/base/obj");
-const {cutil} = require("@ghasemkiani/base/cutil");
+import {Obj} from "@ghasemkiani/base";
+import {cutil} from "@ghasemkiani/base";
 
-class Quantity extends Base {
+class Quantity extends Obj {
 	// _space
 	// _value
 	// _unit
@@ -232,7 +232,7 @@ cutil.extend(Length.prototype, {
 	dpi: 72,
 });
 
-let quantity = new (class extends Base {
+let quantity = new (class extends Obj {
 	time(...args) {
 		return new Time(...args);
 	}
@@ -241,9 +241,4 @@ let quantity = new (class extends Base {
 	}
 })();
 
-module.exports = {
-	Quantity,
-	Time,
-	Length,
-	quantity,
-};
+export {Quantity, Time, Length, quantity};
