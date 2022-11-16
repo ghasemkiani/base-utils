@@ -10,6 +10,11 @@ class Axis extends Obj {
 			data: null,
 		});
 	}
+	sort() {
+		let axis = this;
+		let {data, distance} = axis;
+		data.sort(([a], [b]) => distance(a, b));
+	}
 	get(k) {
 		let axis = this;
 		let {data, distance} = axis;
