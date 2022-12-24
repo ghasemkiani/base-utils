@@ -139,6 +139,7 @@ class Time extends Quantity {
 		return {
 			"ns": 10 ** -9,
 			"us": 10 ** -6,
+			"µs": 10 ** -6,
 			"μs": 10 ** -6,
 			"ms": 10 ** -3,
 			"s": 1,
@@ -204,6 +205,7 @@ class Length extends Quantity {
 		return {
 			"nm": 1e-9,
 			"um": 1e-6,
+			"µm": 1e-6,
 			"μm": 1e-6,
 			"mm": 1e-3,
 			"cm": 1e-2,
