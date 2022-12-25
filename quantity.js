@@ -234,6 +234,41 @@ cutil.extend(Length.prototype, {
 	dpi: 72,
 });
 
+class Area extends Quantity {
+	defUnit() {
+		return "m2";
+	}
+	defKMap() {
+		let area = this;
+		return {
+			"nm2": 1e-18,
+			"um2": 1e-12,
+			"µm2": 1e-12,
+			"μm2": 1e-12,
+			"pt2": ((2.54 * 1e-2) / 72) ** 2,
+			"mm2": 1e-6,
+			"cm2": 1e-4,
+			"in2": (2.54 * 1e-2) ** 2,
+			"dm2": 1e-2,
+			"ft2": (12 * 2.54 * 1e-2) ** 2,
+			"yd2": (3 * 12 * 2.54 * 1e-2) ** 2,
+			"m2": 1,
+			"are": 1e2,
+			"acre": 4840 * (3 * 12 * 2.54 * 1e-2) ** 2,
+			"hectare": 1e4,
+			"dam2": 1e2,
+			"dkm2": 1e2,
+			"Dm2": 1e2,
+			"hm2": 1e4,
+			"km2": 1e6,
+			"mile2": 1609.344 ** 2,
+			"au2": 149597871e3 ** 2,
+			"ly2": 9.461e30,
+			"parsec2": 3.08567758e32,
+		};
+	}
+}
+
 let quantity = new (class extends Obj {
 	time(...args) {
 		return new Time(...args);
@@ -241,6 +276,9 @@ let quantity = new (class extends Obj {
 	length(...args) {
 		return new Length(...args);
 	}
+	area(...args) {
+		return new Area(...args);
+	}
 })();
 
-export {Quantity, Time, Length, quantity};
+export {Quantity, Time, Length, Area, quantity};
