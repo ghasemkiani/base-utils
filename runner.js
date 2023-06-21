@@ -2,12 +2,14 @@
 
 import {cutil} from "@ghasemkiani/base";
 
+import {pubsub} from "./pubsub.js";
+
 const IDLE = new String("idle");
 const STARTED = new String("started");
 const PAUSED = new String("paused");
 const STOPPED = new String("stopped");
 
-const irunner = {
+const irunner = cutil.extend({}, pubsub, {
 	_state: IDLE,
 	get state() {
 		return cutil.asString(this._state);
@@ -23,7 +25,7 @@ const irunner = {
 					this.defaultPrevented = true;
 				},
 			};
-			this.emit("state-change", event);
+			this.pub("state", event);
 			if (!event.defaultPrevented) {
 				this._state = state;
 			}
@@ -102,6 +104,6 @@ const irunner = {
 		}
 		return !this.isPaused();
 	},
-};
+});
 
 export {irunner};
