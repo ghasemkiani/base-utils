@@ -129,6 +129,10 @@ class Quantity extends Obj {
 	defKMap() {
 		return {};
 	}
+	clone() {
+		let Quantity = this.constructor;
+		return new Quantity(this);
+	}
 }
 
 class Time extends Quantity {
@@ -197,6 +201,11 @@ class Time extends Quantity {
 }
 
 class Length extends Quantity {
+	static {
+		cutil.extend(this.prototype, {
+			dpi: 72,
+		});
+	}
 	defUnit() {
 		return "m";
 	}
@@ -229,10 +238,15 @@ class Length extends Quantity {
 			"parsec": 3.08567758e16,
 		};
 	}
+	di(...args) {
+		if (args.length === 0) {
+			return this.dpi;
+		} else {
+			this.dpi = args[0];
+			return this;
+		}
+	}
 }
-cutil.extend(Length.prototype, {
-	dpi: 72,
-});
 
 class Area extends Quantity {
 	defUnit() {
