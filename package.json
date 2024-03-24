@@ -1,6 +1,6 @@
 {
 	"name": "@ghasemkiani/base-utils",
-	"version": "2.1.6",
+	"version": "2.1.7",
 	"description": "Basic utilities",
 	"type": "module",
 	"main": "index.js",

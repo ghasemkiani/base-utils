@@ -49,14 +49,27 @@ const pubsub = {
 	},
 	pub(type, ...rest) {
 		type = cutil.asString(type);
+		var methodName = cutil.toCamelCase("on-" + cutil.asString(type).replace(/\./g, "-"));
+		if(methodName in this && typeof this[methodName] === "function") {
+			this[methodName].call(this, ...rest);
+		}
 		if(this.lsnrs[type]) {
 			for(let listener of this.lsnrs[type]) {
 				listener.call(this, ...rest);
 			};
 		}
+		return this;
+	},
+	async toPub(type, ...rest) {
+		type = cutil.asString(type);
 		var methodName = cutil.toCamelCase("on-" + cutil.asString(type).replace(/\./g, "-"));
 		if(methodName in this && typeof this[methodName] === "function") {
-			this[methodName].call(this, ...rest);
+			await this[methodName].call(this, ...rest);
+		}
+		if(this.lsnrs[type]) {
+			for(let listener of this.lsnrs[type]) {
+				await listener.call(this, ...rest);
+			};
 		}
 		return this;
 	},
