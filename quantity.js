@@ -68,6 +68,10 @@ class Quantity extends Obj {
 	sFixed(decimals) {
 		return this.nFixed(decimals) + (this.space ? " " : "") + this.unit;
 	}
+	nosp() {
+		this.space = false;
+		return this;
+	}
 	v(...args) {
 		if (args.length === 0) {
 			return this.value / this.k;
