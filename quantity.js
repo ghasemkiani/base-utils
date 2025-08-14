@@ -226,6 +226,7 @@ class Length extends Quantity {
       cm: 1e-2,
       in: 2.54 * 1e-2,
       pt: (2.54 * 1e-2) / 72,
+      twip: (2.54 * 1e-2) / 72 / 20,
       get px() {
         return (2.54 * 1e-2) / length.dpi;
       },
