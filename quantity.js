@@ -124,6 +124,10 @@ class Quantity extends Obj {
     this.value *= scale;
     return this;
   }
+  power(n) {
+    this.value **= n;
+    return this;
+  }
   defUnit() {
     return "";
   }
@@ -242,6 +246,7 @@ class Length extends Quantity {
       mile: 1609.344,
       au: 149597871e3,
       ly: 9.461e15,
+      // ly: 9.4607304725808e15,
       parsec: 3.08567758e16,
     };
   }
@@ -290,6 +295,39 @@ class Area extends Quantity {
   }
 }
 
+class Weight extends Quantity {
+  defUnit() {
+    return "g";
+  }
+  defKMap() {
+    return {
+      ng: 1e-9,
+      µg: 1e-6,
+      mg: 1e-3,
+      gandom: 0.048,
+      jow: 0.064,
+      lappeh: 0.096,
+      nokhod: 0.192,
+      carat: 0.200,
+      g: 1,
+      msqShari: 3.456,
+      msq: 4.608,
+      msqSeyrafi: 4.608,
+      msqMamuli: 4.6875,
+      coin: 8.13598,
+      oz: 28.349523125,
+      troy: 31.1034768,
+      sir: 75,
+      lb: 453.59237,
+      kg: 1e3,
+      man: 3e3,
+      kharvar: 3e5,
+      t: 1e6,
+      ton: 1e6,
+    };
+  }
+}
+
 let quantity = new (class extends Obj {
   time(...args) {
     return new Time(...args);
@@ -300,6 +338,9 @@ let quantity = new (class extends Obj {
   area(...args) {
     return new Area(...args);
   }
+  weight(...args) {
+    return new Weight(...args);
+  }
 })();
 
-export { Quantity, Time, Length, Area, quantity };
+export { Quantity, Time, Length, Area, Weight, quantity };
